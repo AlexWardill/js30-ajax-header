@@ -7,3 +7,9 @@ Project #6 of Wes Bos' JS30
 - find all the cities that include the search content
 - create a <li> for each of them
 - add it to the <ul>
+
+
+
+
+
+- add weather informatin

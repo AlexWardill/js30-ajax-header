@@ -4,26 +4,36 @@ const form = document.getElementById('search-form');
 const suggestions = document.querySelector('.suggestions');
 const searchBox = document.getElementById('search-box');
 
+searchBox.value = '';
 const cities = [];
 
 const prom = fetch(endpoint)
                 .then(stuff => stuff.json())
-                .then(data => cities.push(data));
+                .then(data => cities.push(...data));
 
 
 function updateResults() {
     let cityNames = cities
-                        .map(place => place.city)
-                        .filter(city => city.includes(searchBox.textContent));
+                        .map(place => place['city'].toLowerCase());
+                        //.filter(thing => thing.includes(searchBox.textContent));
+
     let relevantCities = [...cityNames];
     return relevantCities;
 };
 
-searchBox.addEventListener('change', () => {
-    updateResults();
+
+function outputCities() {
+    let text = searchBox.value.toLowerCase();
+    let relevantCities;
+    suggestions.innerHTML = '';
+
+    relevantCities = updateResults().filter(city => city.includes(text));
     relevantCities.forEach(element => {
-        let newDiv = document.createElement('div').textContent(element);
+        let newDiv = document.createElement('div');
+        newDiv.textContent = element;
         suggestions.appendChild(newDiv);
     });
-});
+}
 
+searchBox.addEventListener('input', outputCities);
+form.addEventListener

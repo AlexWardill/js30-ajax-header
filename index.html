@@ -8,11 +8,10 @@
     <title>Document</title>
 </head>
 <body>
-    <form class="search-form">
+    <h1 id="header">Search for a city</h1>
+    <form class="search-form" onsubmit="event.preventDefault();" autocomplete="off">
         <input type="text" class="search" placeholder="City or State" id="search-box">
         <ul class="suggestions">
-          <li>Filter for a city</li>
-          <li>or a state</li>
         </ul>
       </form>
 <script src="app.js"></script>
