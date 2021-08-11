@@ -22,12 +22,13 @@ body {
 
 #search-box {
     padding: 5px;
+    margin-bottom: 3em;
 }
 
 .suggestions {
     color: white;
 }
 
-li {
-    margin: 10px;
+.list-item {
+    margin-bottom: 10px;
 }

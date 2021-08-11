@@ -14,7 +14,7 @@ const prom = fetch(endpoint)
 
 function updateResults() {
     let cityNames = cities
-                        .map(place => place['city'].toLowerCase());
+                        .map(place => place['city']);
                         //.filter(thing => thing.includes(searchBox.textContent));
 
     let relevantCities = [...cityNames];
@@ -24,16 +24,20 @@ function updateResults() {
 
 function outputCities() {
     let text = searchBox.value.toLowerCase();
+    if (text == '') {
+        return suggestions.innerHTML = '';
+    }
+    
     let relevantCities;
     suggestions.innerHTML = '';
-
-    relevantCities = updateResults().filter(city => city.includes(text));
+    
+    relevantCities = updateResults().filter(city => city.toLowerCase().includes(text));
     relevantCities.forEach(element => {
         let newDiv = document.createElement('div');
+        newDiv.setAttribute('class', 'list-item');
         newDiv.textContent = element;
         suggestions.appendChild(newDiv);
     });
 }
 
 searchBox.addEventListener('input', outputCities);
-form.addEventListener
